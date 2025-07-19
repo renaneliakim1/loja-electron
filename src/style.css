@@ -1,0 +1,172 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1{
+  text-align: center;
+}
+
+.btn-add,
+.btn-salvar {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-add:hover,
+.btn-salvar:hover {
+  background-color: #218838;
+}
+
+
+.btn-voltar{
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #616364;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-voltar:hover {
+  background-color: #9fa4a8;
+}
+
+
+.btn-adicionar {
+  background-color: #285ba7;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-adicionar:hover {
+  background-color: #218838;
+}
+
+.btn-excluir {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-excluir:hover {
+  background-color: #c82333;
+}
+
+.botoes {
+  display: flex;
+  gap: 5px;
+}
+
+
+
+
+
+
+form{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  list-style: inherit;
+  padding: 0;
+  border-radius: 5px;
+  align-items: center;
+
+
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: solid 1px #ccc;
+  padding: 10px;
+}
+
+.produto-nome {
+  flex: 1;
+}
+
+.botoes {
+  display: flex;
+  gap: 5px;
+}
+
+
+button {
+  margin-left: 10px;
+  padding: 5px 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: #999;
+}
+input[type="text"]:focus::placeholder,
+input[type="number"]:focus::placeholder {
+  color: transparent;
+}
+input[type="text"]:valid,
+input[type="number"]:valid {
+  border-color: #28a745;
+}
+
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+#quantidade {
+
+  font-weight: bold;
+  color: #5e5e5e;
+}
+
+

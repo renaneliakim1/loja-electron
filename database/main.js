@@ -1,0 +1,38 @@
+const { ipcMain } = require('electron');
+const db = require('./database/db');
+
+ipcMain.handle('produtos:listar', () => {
+  return new Promise((resolve, reject) => {
+    db.listar((err, rows) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
+  });
+});
+
+ipcMain.handle('produtos:criar', (event, produto) => {
+  return new Promise((resolve, reject) => {
+    db.criar(produto, (err) => {
+      if (err) reject(err);
+      else resolve(true);
+    });
+  });
+});
+
+ipcMain.handle('produtos:atualizar', (event, produto) => {
+  return new Promise((resolve, reject) => {
+    db.atualizar(produto, (err) => {
+      if (err) reject(err);
+      else resolve(true);
+    });
+  });
+});
+
+ipcMain.handle('produtos:deletar', (event, id) => {
+  return new Promise((resolve, reject) => {
+    db.deletar(id, (err) => {
+      if (err) reject(err);
+      else resolve(true);
+    });
+  });
+});

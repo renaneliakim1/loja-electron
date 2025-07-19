@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Produtos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Cadastrar Produto</h1>
+      <p for="nome">Informações do produto:</p>
+
+  <form id="formProduto">
+    <input type="text" id="nome" placeholder="Iphone" required><br>
+    <input type="number" id="preco" placeholder=" R$ 4.999,00" step="0.01" required><br>
+    <input type="number" id="estoque" placeholder="50" required><br>
+    <button class="btn-salvar" type="submit">Salvar</button>
+
+  </form>
+
+  <section>
+
+
+    <button class="btn-voltar" onclick="window.location.href='index.html'">Voltar</button>
+  </section>
+
+  <script>
+    const form = document.getElementById('formProduto');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const produto = {
+        nome: document.getElementById('nome').value,
+        preco: parseFloat(document.getElementById('preco').value),
+        estoque: parseInt(document.getElementById('estoque').value)
+      };
+      window.api.produtos.criar(produto).then(() => {
+        alert('Produto cadastrado!');
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+
+</html>
