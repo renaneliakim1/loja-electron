@@ -47,17 +47,40 @@ function adicionarAoCarrinho(produto) {
 function renderizarCarrinho() {
   carrinhoEl.innerHTML = "";
   let total = 0;
-  
-  carrinho.forEach((item) => {
+
+  carrinho.forEach((item, index) => {
     total += item.preco;
+
     const li = document.createElement("li");
-    li.textContent = item.nome + " - R$" + item.preco;
+    li.classList.add("item-carrinho");
+
+    const nomeSpan = document.createElement("span");
+    nomeSpan.textContent = `${item.nome} - R$${item.preco}`;
+    nomeSpan.classList.add("nome-item");
+
+    const btnRemover = document.createElement("button");
+    btnRemover.textContent = "Remover da Lista";
+    btnRemover.classList.add("btn-remover");
+    btnRemover.onclick = () => {
+      removerDoCarrinho(index);
+    };
+
+    li.appendChild(nomeSpan);
+    li.appendChild(btnRemover);
     carrinhoEl.appendChild(li);
   });
 
   totalEl.textContent = total.toFixed(2);
-  quantidadeEl.textContent = carrinho.length; // Atualiza a quantidade de itens
+  quantidadeEl.textContent = carrinho.length;
+
+ 
+
+
 }
 
+ function removerDoCarrinho(index) {
+  carrinho.splice(index, 1); // Remove o item pelo índice
+  renderizarCarrinho();
 
+ }
 renderizarProdutos();

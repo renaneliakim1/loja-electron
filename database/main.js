@@ -1,5 +1,11 @@
 const { ipcMain } = require('electron');
 const db = require('./database/db');
+const path = require('path');
+
+// faz o electron recarregar automaticamente apos alterações 
+require('electron-reload')(__dirname, {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+});
 
 ipcMain.handle('produtos:listar', () => {
   return new Promise((resolve, reject) => {

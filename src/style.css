@@ -51,7 +51,7 @@ h1{
 }
 
 .btn-adicionar:hover {
-  background-color: #218838;
+  background-color: #677ba1;
 }
 
 .btn-excluir {
@@ -72,7 +72,27 @@ h1{
   gap: 5px;
 }
 
+.item-carrinho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
+}
 
+.btn-remover {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-remover:hover {
+  background-color: #c82333;
+}
 
 
 

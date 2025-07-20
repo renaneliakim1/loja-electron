@@ -14,7 +14,9 @@
 
   <form id="formProduto">
     <input type="text" id="nome" placeholder="Iphone" required><br>
-    <input type="number" id="preco" placeholder=" R$ 4.999,00" step="0.01" required><br>
+    <input type="text" id="preco" placeholder="R$ 4.999,00" required>
+
+
     <input type="number" id="estoque" placeholder="50" required><br>
     <button class="btn-salvar" type="submit">Salvar</button>
 
@@ -26,21 +28,35 @@
     <button class="btn-voltar" onclick="window.location.href='index.html'">Voltar</button>
   </section>
 
-  <script>
-    const form = document.getElementById('formProduto');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const produto = {
-        nome: document.getElementById('nome').value,
-        preco: parseFloat(document.getElementById('preco').value),
-        estoque: parseInt(document.getElementById('estoque').value)
-      };
-      window.api.produtos.criar(produto).then(() => {
-        alert('Produto cadastrado!');
-        window.location.href = 'index.html';
-      });
+<script>
+  const form = document.getElementById('formProduto');
+  
+
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value;
+    let preco = document.getElementById('preco').value;
+    preco = preco.replace('.', '').replace(',', '.');
+    preco = parseFloat(preco);
+
+    const estoque = parseInt(document.getElementById('estoque').value);
+
+    if (isNaN(preco) || preco <= 0) {
+      alert('Preço inválido! Digite no formato: 4.999,00');
+      return;
+    }
+
+    const produto = { nome, preco, estoque };
+
+    window.api.produtos.criar(produto).then(() => {
+      alert('Produto cadastrado!');
+      window.location.href = 'index.html';
     });
-  </script>
+  });
+</script>
+
 </body>
 
 </html>
