@@ -12,7 +12,10 @@ function renderizarProdutos() {
       const li = document.createElement("li");
 
       const nomeSpan = document.createElement("span");
-      nomeSpan.textContent = `${produto.nome} - R$${produto.preco}`;
+
+      //toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) padrão brasileiro
+      nomeSpan.textContent = `${produto.nome} - ${produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+
       nomeSpan.classList.add("produto-nome");
 
       const btnAdd = document.createElement("button");
@@ -55,7 +58,9 @@ function renderizarCarrinho() {
     li.classList.add("item-carrinho");
 
     const nomeSpan = document.createElement("span");
-    nomeSpan.textContent = `${item.nome} - R$${item.preco}`;
+    //toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) padrão brasileiro
+    nomeSpan.textContent = `${item.nome} - ${item.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+
     nomeSpan.classList.add("nome-item");
 
     const btnRemover = document.createElement("button");
@@ -69,8 +74,10 @@ function renderizarCarrinho() {
     li.appendChild(btnRemover);
     carrinhoEl.appendChild(li);
   });
+  
+  //toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) padrão brasileiro
+  totalEl.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-  totalEl.textContent = total.toFixed(2);
   quantidadeEl.textContent = carrinho.length;
 
  
