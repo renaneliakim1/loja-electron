@@ -45,7 +45,6 @@ Node.js 20.x LTS
 
 ⚠️ IMPORTANTE: Atualmente o Electron não suporta oficialmente o Node.js 22.
 
-TANTE
 
 2️⃣ Clone o projeto ou baixe o ZIP
 Se for clonar:
