@@ -22,32 +22,15 @@ Node.js – Lógica do CRUD e integração com banco de dados
 SQLite3 – Banco de dados local
 
 📂 Estrutura do Projeto
-bash
-Copiar
-Editar
 
-loja-electron/
-├── src/
-│   ├── index.html         # Tela principal com carrinho
-│   ├── crud.html          # Tela de cadastro de produtos
-│   ├── renderer.js        # Lógica da interface principal
-│   └── style.css          # Estilos da interface
-│
-├── database/
-│   ├── db.js              # Conexão e operações com SQLite (CRUD)
-│   └── loja.db            # Banco de dados SQLite gerado automaticamente
-│
-├── main.js                # Processo principal do Electron
-├── preload.js             # Comunicação segura entre frontend e backend
-├── package.json           # Configuração do Node.js e Electron
-├── README.md              # Documentação do projeto
+
+![alt text](image.png)
+
 
 💾 Banco de Dados
 O banco SQLite é criado automaticamente na pasta do projeto com o nome:
 
-Copiar
-Editar
-loja.db
+
 Tabela produtos:
 
 Campo	Tipo
@@ -60,12 +43,14 @@ preco	REAL
 Node.js 20.x LTS
 (Baixar em: https://nodejs.org/en/download)
 
+⚠️ IMPORTANTE: Atualmente o Electron não suporta oficialmente o Node.js 22.
+
+TANTE
+
 2️⃣ Clone o projeto ou baixe o ZIP
 Se for clonar:
 
-bash
-Copiar
-Editar
+
 git clone https://github.com/renaneliakim1/loja-electron.git
 cd loja-electron
 Se for por ZIP, basta extrair e abrir a pasta.
@@ -73,19 +58,17 @@ Se for por ZIP, basta extrair e abrir a pasta.
 3️⃣ Instale as dependências
 
 npm install
-npm install electron-reload --save-dev ((Opcional) Recarregamento automático	)
+npm install electron --save-dev  (Instala o Electron na versão mais recente disponível.)
 
 
 
 4️⃣ Rode a aplicação
-bash
 
 npm start
 
 ⚠️ Possíveis Problemas
 Se ocorrer erro com o Electron:
 
-bash
 
 npm cache clean --force
 rmdir /s /q node_modules
