@@ -2,7 +2,7 @@ const { ipcMain } = require('electron');
 const db = require('./database/db');
 const path = require('path');
 
-// faz o electron recarregar automaticamente apos alterações 
+// faz o electron recarregar automaticamente apos alterações (não esta funcionando )  
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 });

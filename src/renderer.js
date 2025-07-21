@@ -17,12 +17,12 @@ function renderizarProdutos() {
 
       const btnAdd = document.createElement("button");
       btnAdd.textContent = "Adicionar";
-      btnAdd.classList.add("btn-adicionar"); // Classe para estilizar
+      btnAdd.classList.add("btn-adicionar"); // Classe para estilizar css
       btnAdd.onclick = () => adicionarAoCarrinho(produto);
 
       const btnDel = document.createElement("button");
       btnDel.textContent = "Excluir Produto";
-      btnDel.classList.add("btn-excluir"); // Classe para estilizar
+      btnDel.classList.add("btn-excluir"); // Classe para estilizar css
       btnDel.onclick = () => {
         window.api.produtos.deletar(produto.id).then(renderizarProdutos);
       };
@@ -79,7 +79,7 @@ function renderizarCarrinho() {
 }
 
  function removerDoCarrinho(index) {
-  carrinho.splice(index, 1); // Remove o item pelo índice
+  carrinho.splice(index, 1); // usa indice para remover 
   renderizarCarrinho();
 
  }

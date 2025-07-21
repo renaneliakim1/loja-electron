@@ -1,4 +1,4 @@
-🛍️ Loja Simples Desktop (Electron + Node + SQLite)
+🛍️ Loja Simples Desktop (Electron + Node + SQLite3)
 Este projeto é uma aplicação desktop simples de uma loja virtual, desenvolvida com Electron, Node.js e SQLite3.
 
 🚀 Funcionalidades
@@ -25,16 +25,22 @@ SQLite3 – Banco de dados local
 bash
 Copiar
 Editar
+
 loja-electron/
 ├── src/
-│   ├── index.html          # Tela principal com carrinho
-│   ├── crud.html            # Tela de cadastro de produtos
-│   ├── renderer.js          # Lógica da interface
-│   └── style.css             # Estilos da interface
-├── main.js                  # Processo principal do Electron
-├── database.js              # Conexão com SQLite e CRUD
-├── preload.js               # Comunicação segura frontend/backend
-├── package.json             # Configuração do projeto
+│   ├── index.html         # Tela principal com carrinho
+│   ├── crud.html          # Tela de cadastro de produtos
+│   ├── renderer.js        # Lógica da interface principal
+│   └── style.css          # Estilos da interface
+│
+├── database/
+│   ├── db.js              # Conexão e operações com SQLite (CRUD)
+│   └── loja.db            # Banco de dados SQLite gerado automaticamente
+│
+├── main.js                # Processo principal do Electron
+├── preload.js             # Comunicação segura entre frontend e backend
+├── package.json           # Configuração do Node.js e Electron
+├── README.md              # Documentação do projeto
 
 💾 Banco de Dados
 O banco SQLite é criado automaticamente na pasta do projeto com o nome:
@@ -60,26 +66,27 @@ Se for clonar:
 bash
 Copiar
 Editar
-git clone https://github.com/seuusuario/loja-electron.git
+git clone https://github.com/renaneliakim1/loja-electron.git
 cd loja-electron
 Se for por ZIP, basta extrair e abrir a pasta.
 
 3️⃣ Instale as dependências
-bash
-Copiar
-Editar
+
 npm install
+npm install electron-reload --save-dev ((Opcional) Recarregamento automático	)
+
+
+
 4️⃣ Rode a aplicação
 bash
-Copiar
-Editar
+
 npm start
+
 ⚠️ Possíveis Problemas
 Se ocorrer erro com o Electron:
 
 bash
-Copiar
-Editar
+
 npm cache clean --force
 rmdir /s /q node_modules
 del package-lock.json
