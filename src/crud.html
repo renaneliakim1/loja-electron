@@ -1,62 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro de Produtos</title>
+  <title>CRUD Produto</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <h1>Cadastrar Produto</h1>
-      <p for="nome">Informações do produto:</p>
+  <h1 id="titulo">Cadastrar Produto</h1>
 
   <form id="formProduto">
-    <input type="text" id="nome" placeholder="ex: Iphone" required><br>
-    <input type="text" id="preco" placeholder="ex: R$ 4.999,00" required>
+    <input type="text" id="nome" placeholder="Nome do Produto" required><br>
+    <input type="text" id="preco" placeholder="Preço (ex: 99.99)" required><br>
+    <input type="number" id="estoque" placeholder="Estoque" required><br>
 
-
-    <input type="number" id="estoque" placeholder="ex: 50" required><br>
-    <button class="btn-salvar" type="submit">Salvar Produto</button>
-
+    <button  class="btn-salvar" type="submit">Salvar</button>
+    <button class="btn-cancelar" type="button" onclick="window.location.href='index.html'">Cancelar</button>
   </form>
 
-  <section>
-
-
-    <button class="btn-voltar" onclick="window.location.href='index.html'">Voltar</button>
-  </section>
-
-<script>
-  const form = document.getElementById('formProduto');
-  
-
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const nome = document.getElementById('nome').value;
-    let preco = document.getElementById('preco').value;
-    preco = preco.replace('.', '').replace(',', '.');
-    preco = parseFloat(preco);
-
-    const estoque = parseInt(document.getElementById('estoque').value);
-
-    if (isNaN(preco) || preco <= 0) {
-      alert('Preço inválido! Digite no formato: 4.999,00');
-      return;
-    }
-
-    const produto = { nome, preco, estoque };
-
-    window.api.produtos.criar(produto).then(() => {
-      alert('Produto cadastrado!');
-      window.location.href = 'index.html';
-    });
-  });
-</script>
-
+  <script src="crud.js"></script>
 </body>
-
 </html>

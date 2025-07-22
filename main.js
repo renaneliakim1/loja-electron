@@ -11,7 +11,7 @@ function createWindow() {
     }
   });
 
-  win.loadFile('src/index.html');
+  win.loadFile('./src/index.html');
 }
 
 app.whenReady().then(() => {
@@ -19,14 +19,8 @@ app.whenReady().then(() => {
   createWindow();
 });
 
-ipcMain.handle('produtos:listar', () => {
-  return db.listar();
-});
-
-ipcMain.handle('produtos:criar', (event, produto) => {
-  return db.criar(produto);
-});
-
-ipcMain.handle('produtos:deletar', (event, id) => {
-  return db.deletar(id);
-});
+ipcMain.handle('produtos:listar', () => db.listar());
+ipcMain.handle('produtos:criar', (event, produto) => db.criar(produto));
+ipcMain.handle('produtos:atualizar', (event, produto) => db.atualizar(produto));
+ipcMain.handle('produtos:deletar', (event, id) => db.deletar(id));
+ipcMain.handle('produtos:buscarPorId', (event, id) => db.buscarPorId(id));

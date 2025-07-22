@@ -12,11 +12,14 @@ function renderizarProdutos() {
       const li = document.createElement("li");
 
       const nomeSpan = document.createElement("span");
-      nomeSpan.textContent = `${produto.nome} - ${produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+      nomeSpan.textContent = `${produto.nome} - ${produto.preco.toLocaleString(
+        "pt-BR",
+        { style: "currency", currency: "BRL" }
+      )} | Estoque: ${produto.estoque}`;
       nomeSpan.classList.add("produto-nome");
 
       const btnAdd = document.createElement("button");
-      btnAdd.textContent = "Adicionar";
+      btnAdd.textContent = "Adicionar ao Carrinho";
       btnAdd.classList.add("btn-adicionar");
       btnAdd.onclick = () => adicionarAoCarrinho(produto);
 
@@ -24,38 +27,32 @@ function renderizarProdutos() {
       btnEdit.textContent = "Editar";
       btnEdit.classList.add("btn-editar");
       btnEdit.onclick = () => {
-        // Redireciona para crud.html com o id do produto para editar
         window.location.href = `crud.html?id=${produto.id}`;
       };
 
       const btnDel = document.createElement("button");
-      btnDel.textContent = "Excluir Produto";
+      btnDel.textContent = "Excluir";
       btnDel.classList.add("btn-excluir");
       btnDel.onclick = () => {
         window.api.produtos.deletar(produto.id).then(renderizarProdutos);
       };
 
-      const btnContainer = document.createElement("div");
-      btnContainer.classList.add("botoes");
-      btnContainer.appendChild(btnAdd);
-      btnContainer.appendChild(btnEdit);
-      btnContainer.appendChild(btnDel);
-
       li.appendChild(nomeSpan);
-      li.appendChild(btnContainer);
+      li.appendChild(btnAdd);
+      li.appendChild(btnEdit);
+      li.appendChild(btnDel);
+
       lista.appendChild(li);
     });
   });
 }
 
-
-
 function adicionarAoCarrinho(produto) {
-  const existente = carrinho.find(item => item.id === produto.id);
+  const existente = carrinho.find((item) => item.id === produto.id);
   if (existente) {
     existente.quantidade++;
   } else {
-    carrinho.push({...produto, quantidade: 1});
+    carrinho.push({ ...produto, quantidade: 1 });
   }
   renderizarCarrinho();
 }
@@ -63,55 +60,59 @@ function adicionarAoCarrinho(produto) {
 function renderizarCarrinho() {
   carrinhoEl.innerHTML = "";
   let total = 0;
+  let totalItens = 0;
 
   carrinho.forEach((item, index) => {
     total += item.preco * item.quantidade;
+    totalItens += item.quantidade;
 
     const li = document.createElement("li");
     li.classList.add("item-carrinho");
 
     const nomeSpan = document.createElement("span");
-    nomeSpan.textContent = `${item.nome} - ${item.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+    nomeSpan.textContent = `${item.nome} - ${item.preco.toLocaleString(
+      "pt-BR",
+      { style: "currency", currency: "BRL" }
+    )} x ${item.quantidade}`;
     nomeSpan.classList.add("nome-item");
 
-    // Input para alterar quantidade
-    const inputQtd = document.createElement("input");
-    inputQtd.type = "number";
-    inputQtd.min = 1;
-    inputQtd.value = item.quantidade;
-    inputQtd.classList.add("input-quantidade");
-    inputQtd.onchange = (e) => {
-      const novaQtd = parseInt(e.target.value);
-      if (novaQtd > 0) {
-        carrinho[index].quantidade = novaQtd;
+    const btnDiminuir = document.createElement("button");
+    btnDiminuir.textContent = "-";
+    btnDiminuir.onclick = () => {
+      if (item.quantidade > 1) {
+        item.quantidade--;
       } else {
-        carrinho.splice(index, 1); // Remove se for 0 ou inválido
+        carrinho.splice(index, 1);
       }
+      renderizarCarrinho();
+    };
+
+    const btnAumentar = document.createElement("button");
+    btnAumentar.textContent = "+";
+    btnAumentar.onclick = () => {
+      item.quantidade++;
       renderizarCarrinho();
     };
 
     const btnRemover = document.createElement("button");
     btnRemover.textContent = "Remover da Lista";
-    btnRemover.classList.add("btn-remover");
     btnRemover.onclick = () => {
       carrinho.splice(index, 1);
       renderizarCarrinho();
     };
 
     li.appendChild(nomeSpan);
-    li.appendChild(inputQtd);
+    li.appendChild(btnDiminuir);
+    li.appendChild(btnAumentar);
     li.appendChild(btnRemover);
     carrinhoEl.appendChild(li);
   });
 
-  totalEl.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  quantidadeEl.textContent = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+  totalEl.textContent = total.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+  quantidadeEl.textContent = totalItens;
 }
 
-
- function removerDoCarrinho(index) {
-  carrinho.splice(index, 1); // usa indice para remover 
-  renderizarCarrinho();
-
- }
 renderizarProdutos();
