@@ -49,11 +49,23 @@ function renderizarProdutos() {
 
 function adicionarAoCarrinho(produto) {
   const existente = carrinho.find((item) => item.id === produto.id);
+
   if (existente) {
-    existente.quantidade++;
+    if (existente.quantidade < produto.estoque) {
+      existente.quantidade++;
+    } else {
+      alert(
+        `Estoque insuficiente! Só há ${produto.estoque} unidades de ${produto.nome}.`
+      );
+    }
   } else {
-    carrinho.push({ ...produto, quantidade: 1 });
+    if (produto.estoque > 0) {
+      carrinho.push({ ...produto, quantidade: 1 });
+    } else {
+      alert(`O produto ${produto.nome} está esgotado.`);
+    }
   }
+
   renderizarCarrinho();
 }
 
@@ -90,7 +102,16 @@ function renderizarCarrinho() {
     const btnAumentar = document.createElement("button");
     btnAumentar.textContent = "+";
     btnAumentar.onclick = () => {
-      item.quantidade++;
+      const existente = carrinho.find((c) => c.id === item.id);
+
+      if (existente.quantidade < item.estoque) {
+        existente.quantidade++;
+      } else {
+        alert(
+          `Limite de estoque atingido! Estoque disponível de ${item.nome}: ${item.estoque}`
+        );
+      }
+
       renderizarCarrinho();
     };
 

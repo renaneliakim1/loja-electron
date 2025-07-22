@@ -15,19 +15,24 @@ body {
   min-height: 100vh;
 }
 
-/* fixar o total na parte de baixo */
-body .total{
-  font-size: 32px;
+section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+ 
+
+}
+
+section .total{
+  font-size: 42px;
   line-height: 1.6;
   text-align: center;
   margin: 20px 0;
   color: #555;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   
 
-}
+} 
 
 h1, h2 {
   text-align: center;

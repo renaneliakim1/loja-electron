@@ -9,17 +9,21 @@
 
 <body>
   <h1>Produtos</h1>
-  <button onclick="window.location.href='crud.html'">Cadastrar Produto</button>
-
+  <section>
+    <button onclick="window.location.href='crud.html'">Cadastrar Produto</button>
+    <p class="total"><strong>Total: R$ </strong><span id="total">0.00</span></p>
+  </section>
+  
   <ul id="produtos"></ul>
 
   <h2>🛍️ Meu Carrinho</h2>
   <p><span id="quantidade">0</span> item(s)</p>
   <ul id="carrinho"></ul>
-  
-  <p class="total"><strong>Total: R$ </strong><span id="total">0.00</span></p>
 
-<footer> <p>Electron JS - Sistemas de vendas</p></footer>
+
+  <footer>
+    <p>Electron JS - Sistemas de vendas</p>
+  </footer>
 
 
   <script src="renderer.js"></script>

@@ -1,7 +1,15 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 
-const dbPath = path.join(__dirname, '../loja.db');
+// Garante que a pasta 'database' exista
+const dirDatabase = __dirname;
+if (!fs.existsSync(dirDatabase)) {
+  fs.mkdirSync(dirDatabase);
+}
+
+// Caminho correto para salvar dentro da pasta database
+const dbPath = path.join(__dirname, 'loja.db');
 const db = new sqlite3.Database(dbPath);
 
 module.exports = {
